@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "317921097252",
+    "project_id": "saadcart-58b76",
+    "storage_bucket": "saadcart-58b76.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317921097252:android:81f5c660eb6ee13c24cab1",
+        "android_client_info": {
+          "package_name": "com.example.saadcart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWm2Fks5dB22pWURNreKMDiKZ-tYGh6bA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
