@@ -1,4 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:saadcart/home_screen.dart';
+import 'package:saadcart/register_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -31,7 +36,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
           const SizedBox(height: 10,),
 
-          ElevatedButton(onPressed: (){}, child: const Text("Login"))
+          ElevatedButton(onPressed: ()async{
+            await FirebaseAuth.instance.signInWithEmailAndPassword(email: userEmail.text, password: userPassword.text);
+            SharedPreferences pref = await SharedPreferences.getInstance();
+            pref.setString('email', userEmail.text);
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen(),));
+
+          }, child: const Text("Login")),
+
+          const SizedBox(height: 10,),
+
+          TextButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterScreen(),));
+          }, child: Text("Register Yourself"))
 
         ],
       ),

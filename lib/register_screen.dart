@@ -1,4 +1,8 @@
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:saadcart/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -38,8 +42,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
           
           const SizedBox(height: 10,),
           
-          ElevatedButton(onPressed: (){}, child: const Text("Register"))
-          
+          ElevatedButton(onPressed: ()async{
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(email: userEmail.text, password: userPassword.text);
+            FirebaseFirestore.instance.collection("user").add({
+              "name" : userName.text,
+              "email" : userEmail.text,
+              "password" :userPassword.text
+            });
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen(),));
+          }, child: const Text("Register")),
+
+          const SizedBox(height: 10,),
+
+          TextButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen(),));
+          }, child: Text("Login Yourself"))
+
         ],
       ),
     );
